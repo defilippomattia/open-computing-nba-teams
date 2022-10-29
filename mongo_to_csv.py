@@ -1,6 +1,6 @@
 import csv,json
 
-f = open("dumpjson.json")
+f = open("./db-dumps/dumpjson.json")
 json_dict = json.load(f)
 
 def flatten_csv(csv_with_dict_inside):
@@ -47,6 +47,9 @@ take_out = []
 for i in full_csv:
 	for x in i:
 		take_out.append(x)
-with open("dumpcsv.csv", "w", newline="") as f:
-    writer = csv.writer(f)
-    writer.writerows(take_out)
+with open("./db-dumps/dumpcsv.csv", "w", newline="") as f:
+	writer = csv.writer(f)
+	for idx,x in enumerate(take_out):
+		x.insert(0,idx)
+		writer.writerow(x)
+	#writer.writerows(take_out)

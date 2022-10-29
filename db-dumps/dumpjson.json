@@ -1,0 +1,84 @@
+[{
+	"_id": {
+		"$oid": "635cf50510748825680b871d"
+	},
+	"team": "Golden State Warriors",
+	"location": "San Francisco",
+	"conference": "Western",
+	"division": "Pacific",
+	"year_founded": 1946.0,
+	"arena": "Chase Center",
+	"arena_capacity": 18064.0,
+	"championships": 7.0,
+	"finals_appearances": 12.0,
+	"players": [
+		{
+			"number": "30",
+			"name": "Stephen Curry",
+			"position": "Guard"
+		},
+		{
+			"number": "11",
+			"name": "Klay Thompson",
+			"position": "Guard"
+		},
+		{
+			"number": "22",
+			"name": "Andrew Wiggins",
+			"position": "Forward"
+		}
+	]
+},
+{
+	"_id": {
+		"$oid": "635cf50510748825680b871e"
+	},
+	"team": "Los Angeles Clippers",
+	"location": "Los Angeles",
+	"conference": "Western",
+	"division": "Pacific",
+	"year_founded": 1947.0,
+	"arena": "Crypto.com Arena",
+	"arena_capacity": 19079.0,
+	"championships": 0.0,
+	"finals_appearances": 0.0,
+	"players": [
+		{
+			"number": "2",
+			"name": "Kawhi Leonard",
+			"position": "Forward"
+		},
+		{
+			"number": "13",
+			"name": "Paul George",
+			"position": "Forward"
+		},
+		{
+			"number": "40",
+			"name": "Ivica Zubac",
+			"position": "Center"
+		}
+	]
+},
+{
+	"_id": {
+		"$oid": "635cf50510748825680b871f"
+	},
+	"team": "Aloooooooooooooooooooooooooooooooooooooooooo",
+	"location": "Los Angeles",
+	"conference": "Western",
+	"division": "Pacific",
+	"year_founded": 1947.0,
+	"arena": "Crypto.com Arena",
+	"arena_capacity": 19079.0,
+	"championships": 0.0,
+	"finals_appearances": 0.0,
+	"players": [
+		{
+			"number": "2",
+			"name": "Kawhi Leonard",
+			"position": "Forward"
+		}
+	]
+}]
+
