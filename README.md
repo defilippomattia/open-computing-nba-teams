@@ -9,11 +9,12 @@ This is a publicly available dataset repository made at Open Computing course la
 | **Dataset Version** 	|                             1.0                             	|
 |      **Author**     	|                      Mattia de Filippo                      	|
 |     **Language**    	|                           English                           	|
-|     **License**     	|                            CC BY                            	|
+|     **License**     	|                            CC BY-SA 3.0                            	|
 |     **Keywords**    	|                   nba, basketball, sports                   	|
 |     **Publication**   |                   2022-10-29                   	|
 |     **Formats**   |                   JSON, CSV                   	|
 <br>  
+
 ## CSV Description
 
 | Field             	| Description                                 	| Data Type 	|
@@ -60,7 +61,8 @@ Python 3.8
 
 # Creating JSON & CSV dumps
 
-Database dumps (in JSON and CSV) are already available in `./open-computing-nba-teams/db-dumps`, to recreate them, follow the steps:
+Database dumps (in JSON and CSV) are already available in `./open-computing-nba-teams/db-dumps`, to recreate them, follow the steps:  
+
 `git clone https://github.com/defilippomattia/open-computing-nba-teams.git`  
 `cd open-computing-nba-teams/`  
 `docker-compose --file ./Docker/docker-compose.yml up -d`  
