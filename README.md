@@ -1,41 +1,6 @@
-# open-computing-nba-teams
-Open computing lab exercise at fer
-
-# Tools used
-Docker version 20.10.17  
-Docker Compose version v2.6.1  
-Python 3.8
-
-# Starting mongo container
-`git clone https://github.com/defilippomattia/open-computing-nba-teams.git`  
-`cd open-computing-nba-teams/`  
-`docker-compose --file ./Docker/docker-compose.yml up -d`
-
-# Creating JSON & CSV dumps
-`chmod +x create_dumps.sh`  
-`./create_dumps.sh`
-
-The `.csv` and `.json` file will be stored at `./open-computing-nba-teams/db-dumps`
-
-# Useful commands
-
-Kill all docker continers
-docker rm -f $(docker ps -a -q)
-
-create virutal env venv-nba
-python3 -m venv venv-nba
-
-activate virtual environemnt
-source venv-nba/bin/activate
-
-Recreate contianer
- docker-compose up -d --force-recreate
-
-
-#exports to jsonarray (withot jsonArray is not "valid" json file)
- docker exec -i mongo  mongoexport --uri="mongodb://root:password@localhost:27017/open-computing-nba-teams?authSource=admin" --collection "nba_teams" --type=json --jsonArray --pretty> ../db-dumps/dumpjson.json
-
-
+# Open Computing - NBA Teams
+This is a publicly available dataset repository made at Open Computing course lab at University of Zagreb, Faculty of Electrical Engineering and Computing (FER). The dataset provides information about the teams and players in NBA.
+# Dataset 
 |            	|                                     	|
 |-------------------	|-----------------------------------------------------------	|
 |**Title**      	|                      NBA Teams Dataset                      	|
@@ -48,9 +13,8 @@ Recreate contianer
 |     **Keywords**    	|                   nba, basketball, sports                   	|
 |     **Publication**   |                   2022-10-29                   	|
 |     **Formats**   |                   JSON, CSV                   	|
-
-
-# CSV Description
+<br>  
+## CSV Description
 
 | Field             	| Description                                 	| Data Type 	|
 |-------------------	|---------------------------------------------	|-----------	|
@@ -68,8 +32,10 @@ Recreate contianer
 | players_number    	| Players jersey number                       	| string    	|
 | players_name      	| Players name                                	| string    	|
 | players_position  	| Position which player is playing            	| string    	|
+<br>  
 
-# JSON Description
+## JSON Description
+
 
 | Field             	| Description                                                       	| Data Type 	|
 |-------------------	|-------------------------------------------------------------------	|-----------	|
@@ -84,3 +50,21 @@ Recreate contianer
 | championships     	| Number of championships the team has won                          	| numeric   	|
 | final_appearences 	| Number of times the team appeared in finals                       	| numeric   	|
 | players           	| List of players with data about players number, name and position 	| list      	|
+
+<br>  
+
+# Tools used
+Docker version 20.10.17  
+Docker Compose version v2.6.1  
+Python 3.8
+
+# Creating JSON & CSV dumps
+
+Database dumps (in JSON and CSV) are already available in `./open-computing-nba-teams/db-dumps`, to recreate them, follow the steps:
+`git clone https://github.com/defilippomattia/open-computing-nba-teams.git`  
+`cd open-computing-nba-teams/`  
+`docker-compose --file ./Docker/docker-compose.yml up -d`  
+`chmod +x create_dumps.sh`  
+`./create_dumps.sh`
+
+The `.csv` and `.json` file will be stored at `./open-computing-nba-teams/db-dumps`

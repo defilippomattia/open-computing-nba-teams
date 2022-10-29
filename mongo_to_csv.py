@@ -1,6 +1,6 @@
 import csv,json
 
-f = open("./db-dumps/dumpjson.json")
+f = open("./db-dumps/nba_teams.json")
 json_dict = json.load(f)
 
 def flatten_csv(csv_with_dict_inside):
@@ -47,7 +47,7 @@ take_out = []
 for i in full_csv:
 	for x in i:
 		take_out.append(x)
-with open("./db-dumps/dumpcsv.csv", "w", newline="") as f:
+with open("./db-dumps/nba_teams.csv", "w", newline="") as f:
 	writer = csv.writer(f)
 	for idx,x in enumerate(take_out):
 		x.insert(0,idx)
