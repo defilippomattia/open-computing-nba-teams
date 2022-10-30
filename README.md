@@ -1,5 +1,5 @@
 # Open Computing - NBA Teams
-This is a publicly available dataset repository made at Open Computing course lab at University of Zagreb, Faculty of Electrical Engineering and Computing (FER). The dataset provides information about the teams and players in NBA.
+This is a publicly available dataset repository made at Open Computing course lab at University of Zagreb, Faculty of Electrical Engineering and Computing (FER). The dataset provides information about the teams and players in NBA. At the moment, there are 10 teams available and 3 players are listed for each team.
 # Dataset 
 |            	|                                     	|
 |-------------------	|-----------------------------------------------------------	|
@@ -70,3 +70,13 @@ Database dumps (in JSON and CSV) are already available in `./open-computing-nba-
 `./create_dumps.sh`
 
 The `.csv` and `.json` file will be stored at `./open-computing-nba-teams/db-dumps`
+
+
+# Attribution
+
+Wikipedia, National Basketball Association, accessed 29 October 2022, https://en.wikipedia.org/wiki/National_Basketball_Association
+
+The Sporting News, Gilbert McGregor, NBA Finals winners by team: Where Warriors, Celtics, Lakers and more land on all-time championship list, accessed 29 October 2022, https://www.sportingnews.com/us/nba/news/nba-finals-most-championships-by-team-list/qjornvbimtx59sqitrtkxggl
+
+
+NBA, NBA ROSTERS SET FOR 2022-23 REGULAR SEASON, accessed 29 October 2022, https://www.nba.com/news/nba-rosters-set-for-2022-23-regular-season
