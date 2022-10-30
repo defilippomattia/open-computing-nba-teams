@@ -1,0 +1,5 @@
+kill and delete all containers
+docker rm -f $(docker ps -a -q)
+
+start container 
+docker-compose --file ./Docker/docker-compose.yml up -d

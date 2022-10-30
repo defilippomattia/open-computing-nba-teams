@@ -1,6 +1,6 @@
 [{
 	"_id": {
-		"$oid": "635cf50510748825680b871d"
+		"$oid": "635e525d364c40b636863e01"
 	},
 	"team": "Golden State Warriors",
 	"location": "San Francisco",
@@ -31,13 +31,13 @@
 },
 {
 	"_id": {
-		"$oid": "635cf50510748825680b871e"
+		"$oid": "635e525d364c40b636863e02"
 	},
 	"team": "Los Angeles Clippers",
 	"location": "Los Angeles",
 	"conference": "Western",
 	"division": "Pacific",
-	"year_founded": 1947.0,
+	"year_founded": 1970.0,
 	"arena": "Crypto.com Arena",
 	"arena_capacity": 19079.0,
 	"championships": 0.0,
@@ -62,22 +62,249 @@
 },
 {
 	"_id": {
-		"$oid": "635cf50510748825680b871f"
+		"$oid": "635e525d364c40b636863e03"
 	},
-	"team": "Aloooooooooooooooooooooooooooooooooooooooooo",
+	"team": "Los Angeles Lakers",
 	"location": "Los Angeles",
 	"conference": "Western",
 	"division": "Pacific",
 	"year_founded": 1947.0,
 	"arena": "Crypto.com Arena",
 	"arena_capacity": 19079.0,
+	"championships": 17.0,
+	"finals_appearances": 32.0,
+	"players": [
+		{
+			"number": "3",
+			"name": "Anthony Davis",
+			"position": "Center"
+		},
+		{
+			"number": "6",
+			"name": "LeBron James",
+			"position": "Forward"
+		},
+		{
+			"number": "12",
+			"name": "Kendric Nunn",
+			"position": "Guard"
+		}
+	]
+},
+{
+	"_id": {
+		"$oid": "635e525d364c40b636863e04"
+	},
+	"team": "Boston Celtics",
+	"location": "Los Angeles",
+	"conference": "Eastern",
+	"division": "Atlantic",
+	"year_founded": 1946.0,
+	"arena": "TD Garden",
+	"arena_capacity": 19156.0,
+	"championships": 17.0,
+	"finals_appearances": 22.0,
+	"players": [
+		{
+			"number": "36",
+			"name": "Marcus Smart",
+			"position": "Guard"
+		},
+		{
+			"number": "7",
+			"name": "Jaylen Brown",
+			"position": "Guard"
+		},
+		{
+			"number": "42",
+			"name": "Al Horford",
+			"position": "Center"
+		}
+	]
+},
+{
+	"_id": {
+		"$oid": "635e525d364c40b636863e05"
+	},
+	"team": "New York Knicks",
+	"location": "New York City",
+	"conference": "Eastern",
+	"division": "Atlantic",
+	"year_founded": 1946.0,
+	"arena": "Madison Square Garden",
+	"arena_capacity": 19812.0,
+	"championships": 2.0,
+	"finals_appearances": 8.0,
+	"players": [
+		{
+			"number": "1",
+			"name": "Obi Toppin",
+			"position": "Forward"
+		},
+		{
+			"number": "4",
+			"name": "Derrick Rose",
+			"position": "Guard"
+		},
+		{
+			"number": "45",
+			"name": "Jericho Sims",
+			"position": "Center"
+		}
+	]
+},
+{
+	"_id": {
+		"$oid": "635e525d364c40b636863e06"
+	},
+	"team": "Toronto Raptors",
+	"location": "Toronto",
+	"conference": "Eastern",
+	"division": "Atlantic",
+	"year_founded": 1995.0,
+	"arena": "Scotiabank Arena",
+	"arena_capacity": 19800.0,
+	"championships": 1.0,
+	"finals_appearances": 1.0,
+	"players": [
+		{
+			"number": "4",
+			"name": "Scottie Barnes",
+			"position": "Forward"
+		},
+		{
+			"number": "20",
+			"name": "Jeff Dowtin",
+			"position": "Guard"
+		},
+		{
+			"number": "24",
+			"name": "Khem Birch",
+			"position": "Center"
+		}
+	]
+},
+{
+	"_id": {
+		"$oid": "635e525d364c40b636863e07"
+	},
+	"team": "Philadelphia 76ers",
+	"location": "Philadelphia",
+	"conference": "Eastern",
+	"division": "Atlantic",
+	"year_founded": 1946.0,
+	"arena": "Wells Fargo Center",
+	"arena_capacity": 20478.0,
+	"championships": 3.0,
+	"finals_appearances": 9.0,
+	"players": [
+		{
+			"number": "12",
+			"name": "Tobias Harris",
+			"position": "Forward"
+		},
+		{
+			"number": "1",
+			"name": "James Harden",
+			"position": "Guard"
+		},
+		{
+			"number": "21",
+			"name": "Joel Embiid",
+			"position": "Center"
+		}
+	]
+},
+{
+	"_id": {
+		"$oid": "635e525d364c40b636863e08"
+	},
+	"team": "Dallas Mavericks",
+	"location": "Dallas",
+	"conference": "Western",
+	"division": "Southwest",
+	"year_founded": 1980.0,
+	"arena": "American Airlines Center",
+	"arena_capacity": 19200.0,
+	"championships": 1.0,
+	"finals_appearances": 2.0,
+	"players": [
+		{
+			"number": "77",
+			"name": "Luka Doncic",
+			"position": "Guard"
+		},
+		{
+			"number": "3",
+			"name": "Jaden Hardy",
+			"position": "Guard"
+		},
+		{
+			"number": "7",
+			"name": "Dwight Powell",
+			"position": "Center"
+		}
+	]
+},
+{
+	"_id": {
+		"$oid": "635e525d364c40b636863e09"
+	},
+	"team": "Houston Rockets",
+	"location": "Houston",
+	"conference": "Western",
+	"division": "Southwest",
+	"year_founded": 1967.0,
+	"arena": "Toyota Center",
+	"arena_capacity": 18055.0,
+	"championships": 2.0,
+	"finals_appearances": 4.0,
+	"players": [
+		{
+			"number": "4",
+			"name": "Jaylen Green",
+			"position": "Guard"
+		},
+		{
+			"number": "5",
+			"name": "Darius Days",
+			"position": "Forward"
+		},
+		{
+			"number": "51",
+			"name": "Boban Marjanovic",
+			"position": "Center"
+		}
+	]
+},
+{
+	"_id": {
+		"$oid": "635e525d364c40b636863e0a"
+	},
+	"team": "Memphis Grizzlies",
+	"location": "Memphis",
+	"conference": "Western",
+	"division": "Southwest",
+	"year_founded": 1995.0,
+	"arena": "FedExForum",
+	"arena_capacity": 18119.0,
 	"championships": 0.0,
 	"finals_appearances": 0.0,
 	"players": [
 		{
+			"number": "1",
+			"name": "Kennedy Chandler",
+			"position": "Guard"
+		},
+		{
 			"number": "2",
-			"name": "Kawhi Leonard",
+			"name": "Xavier Tillman",
 			"position": "Forward"
+		},
+		{
+			"number": "7",
+			"name": "Santi Aldama",
+			"position": "Center"
 		}
 	]
 }]

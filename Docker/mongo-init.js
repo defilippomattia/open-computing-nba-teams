@@ -198,5 +198,89 @@ db.nba_teams.insertMany([
                 "position":"Center"
             }
         ]
+    },
+    {
+        "team":"Dallas Mavericks",
+        "location":"Dallas",
+        "conference": "Western",
+        "division":"Southwest",
+        "year_founded":1980,
+        "arena":"American Airlines Center",
+        "arena_capacity":19200,
+        "championships":1,
+        "finals_appearances":2,
+        "players":[
+            {
+                "number":"77",
+                "name":"Luka Doncic",
+                "position":"Guard"
+            },
+            {
+                "number":"3",
+                "name":"Jaden Hardy",
+                "position":"Guard"
+            },
+            {
+                "number":"7",
+                "name":"Dwight Powell",
+                "position":"Center"
+            }
+        ]
+    },
+    {
+        "team":"Houston Rockets",
+        "location":"Houston",
+        "conference": "Western",
+        "division":"Southwest",
+        "year_founded":1967,
+        "arena":"Toyota Center",
+        "arena_capacity":18055,
+        "championships":2,
+        "finals_appearances":4,
+        "players":[
+            {
+                "number":"4",
+                "name":"Jaylen Green",
+                "position":"Guard"
+            },
+            {
+                "number":"5",
+                "name":"Darius Days",
+                "position":"Forward"
+            },
+            {
+                "number":"51",
+                "name":"Boban Marjanovic",
+                "position":"Center"
+            }
+        ]
+    },
+    {
+        "team":"Memphis Grizzlies",
+        "location":"Memphis",
+        "conference": "Western",
+        "division":"Southwest",
+        "year_founded":1995,
+        "arena":"FedExForum",
+        "arena_capacity":18119,
+        "championships":0,
+        "finals_appearances":0,
+        "players":[
+            {
+                "number":"1",
+                "name":"Kennedy Chandler",
+                "position":"Guard"
+            },
+            {
+                "number":"2",
+                "name":"Xavier Tillman",
+                "position":"Forward"
+            },
+            {
+                "number":"7",
+                "name":"Santi Aldama",
+                "position":"Center"
+            }
+        ]
     }
 ]);
