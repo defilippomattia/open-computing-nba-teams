@@ -1,6 +1,6 @@
 [{
 	"_id": {
-		"$oid": "635e525d364c40b636863e01"
+		"$oid": "635e60096d7e6e43559d37f1"
 	},
 	"team": "Golden State Warriors",
 	"location": "San Francisco",
@@ -31,7 +31,7 @@
 },
 {
 	"_id": {
-		"$oid": "635e525d364c40b636863e02"
+		"$oid": "635e60096d7e6e43559d37f2"
 	},
 	"team": "Los Angeles Clippers",
 	"location": "Los Angeles",
@@ -62,7 +62,7 @@
 },
 {
 	"_id": {
-		"$oid": "635e525d364c40b636863e03"
+		"$oid": "635e60096d7e6e43559d37f3"
 	},
 	"team": "Los Angeles Lakers",
 	"location": "Los Angeles",
@@ -93,7 +93,7 @@
 },
 {
 	"_id": {
-		"$oid": "635e525d364c40b636863e04"
+		"$oid": "635e60096d7e6e43559d37f4"
 	},
 	"team": "Boston Celtics",
 	"location": "Los Angeles",
@@ -124,7 +124,7 @@
 },
 {
 	"_id": {
-		"$oid": "635e525d364c40b636863e05"
+		"$oid": "635e60096d7e6e43559d37f5"
 	},
 	"team": "New York Knicks",
 	"location": "New York City",
@@ -155,7 +155,7 @@
 },
 {
 	"_id": {
-		"$oid": "635e525d364c40b636863e06"
+		"$oid": "635e60096d7e6e43559d37f6"
 	},
 	"team": "Toronto Raptors",
 	"location": "Toronto",
@@ -186,7 +186,7 @@
 },
 {
 	"_id": {
-		"$oid": "635e525d364c40b636863e07"
+		"$oid": "635e60096d7e6e43559d37f7"
 	},
 	"team": "Philadelphia 76ers",
 	"location": "Philadelphia",
@@ -217,7 +217,7 @@
 },
 {
 	"_id": {
-		"$oid": "635e525d364c40b636863e08"
+		"$oid": "635e60096d7e6e43559d37f8"
 	},
 	"team": "Dallas Mavericks",
 	"location": "Dallas",
@@ -248,7 +248,7 @@
 },
 {
 	"_id": {
-		"$oid": "635e525d364c40b636863e09"
+		"$oid": "635e60096d7e6e43559d37f9"
 	},
 	"team": "Houston Rockets",
 	"location": "Houston",
@@ -279,7 +279,7 @@
 },
 {
 	"_id": {
-		"$oid": "635e525d364c40b636863e0a"
+		"$oid": "635e60096d7e6e43559d37fa"
 	},
 	"team": "Memphis Grizzlies",
 	"location": "Memphis",
