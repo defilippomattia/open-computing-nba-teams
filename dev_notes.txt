@@ -3,3 +3,8 @@ docker rm -f $(docker ps -a -q)
 
 start container 
 docker-compose --file ./Docker/docker-compose.yml up -d
+
+
+python3 -m venv venv-nba
+source venv-nba/bin/activate
+python main.py
