@@ -35,19 +35,116 @@
     <h1>jQuery Ajax Form Submit with FormData Example - NiceSnippets.com</h1>
 
     <form method="POST" enctype="multipart/form-data" id="my-form">
-        <label for="cars">Choose search field:</label>
-        <select name="cars" id="cars">
+        <label for="search_field_dropdown">Choose search field:</label>
+        <select name="search_field_dropdown" id="search_field_dropdown">
           <option value="all">All</option>
-          <option value="team_name">Team Name</option>
+          <option value="team">Team Name</option>
+          <option value="location">Team Location</option>
+          <option value="conference">Conference</option>
+          <option value="division">Division</option>
           <option value="year_founded">Year Founded</option>
-          <option value="player">Player</option>
+          <option value="arena">Arena Name</option>
+          <option value="arena_capacity">Arena Capacity</option>
+          <option value="championships">Championships</option>
+          <option value="finals_appearances">Finals Appearances</option>
+          <option value="players">Player</option>
         </select>
         <br><br>
-        <input type="text" name="title"/><br/><br/>
+        <input type="text" id="input_from_search" name="input_from_search"/><br/><br/>
         <input type="file" name="files"/><br/><br/>
         <input type="submit" value="Submit" id="btnSubmit"/>
     </form>
     <span id="output"></span>
+    <!-- CSS Code: Place this code in the document's head (between the 'head' tags) -->
+<style>
+    table.GeneratedTable {
+      width: 100%;
+      background-color: #ffffff;
+      border-collapse: collapse;
+      border-width: 2px;
+      border-color: #ffcc00;
+      border-style: solid;
+      color: #000000;
+    }
+    
+    table.GeneratedTable td, table.GeneratedTable th {
+      border-width: 2px;
+      border-color: #ffcc00;
+      border-style: solid;
+      padding: 3px;
+    }
+    
+    table.GeneratedTable thead {
+      background-color: #ffcc00;
+    }
+    </style>
+    
+    <!-- HTML Code: Place this code in the document's body (between the 'body' tags) where the table should appear -->
+    <table class="GeneratedTable">
+      <thead>
+        <tr>
+          <th>Team Name</th>
+          <th>Location</th>
+          <th>Confernce</th>
+          <th>Division</th>
+          <th>Year Founded</th>
+          <th>Arena</th>
+          <th>Arena Capacity</th>
+          <th>Championships</th>
+          <th>Final Appearences</th>
+          <th>Player Number</th>
+          <th>Player Name</th>
+          <th>Player Position</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Cell</td>
+          <td>Cell</td>
+          <td>Cell</td>
+          <td>Cell</td>
+          <td>Cell</td>
+          <td>Cell</td>
+          <td>Cell</td>
+          <td>Cell</td>
+          <td>Cell</td>
+          <td>Cell</td>
+          <td>Cell</td>
+          <td>Cell</td>
+        </tr>
+        <tr>
+          <td>Cell</td>
+          <td>Cell</td>
+          <td>Cell</td>
+          <td>Cell</td>
+          <td>Cell</td>
+          <td>Cell</td>
+          <td>Cell</td>
+          <td>Cell</td>
+          <td>Cell</td>
+          <td>Cell</td>
+          <td>Cell</td>
+          <td>Cell</td>
+        </tr>
+        <tr>
+          <td>Cell</td>
+          <td>Cell</td>
+          <td>Cell</td>
+          <td>Cell</td>
+          <td>Cell</td>
+          <td>Cell</td>
+          <td>Cell</td>
+          <td>Cell</td>
+          <td>Cell</td>
+          <td>Cell</td>
+          <td>Cell</td>
+          <td>Cell</td>
+        </tr>
+      </tbody>
+    </table>
+    <!-- Codes by Quackit.com -->
+    
+    
     <script type="text/javascript">
     	$(document).ready(function () {
             $("#btnSubmit").click(function (event) {
@@ -59,11 +156,10 @@
          
                 // FormData object 
                 var data = new FormData(form);
-                console.log("alo bre")
                 console.log(data)
          
                 // If you want to add an extra field for the FormData
-                data.append("CustomField", "This is some extra data, testing");
+                //data.append("CustomField", "This is some extra data, testing");
          
                 // disabled the submit button
                 $("#btnSubmit").prop("disabled", true);
