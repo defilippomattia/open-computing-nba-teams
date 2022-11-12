@@ -7,4 +7,5 @@ docker-compose --file ./Docker/docker-compose.yml up -d
 
 python3 -m venv venv-nba
 source venv-nba/bin/activate
-python main.py
+cd backend
+python3 main.py

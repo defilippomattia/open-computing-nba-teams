@@ -1,5 +1,7 @@
 from flask import Flask, render_template, request
 from pymongo import MongoClient
+import json
+from bson import json_util
 
 app = Flask(__name__)
 
@@ -19,29 +21,20 @@ def index():
 @app.route('/create_file', methods=['POST'])
 def create_file():
     if request.method == 'POST':
-        #print("xmattia................................")
-        #print(request)
-        #print(request.form.get('search_field_dropdown'))
-        #print(request.form)
         search_field_dropdown = request.form.get('search_field_dropdown')
         input_from_search = request.form.get('input_from_search')
-        #print(input_from_search)
-        #print(search_field_dropdown)
 
         input_from_search = f"^{input_from_search}"
         myquery = { search_field_dropdown: { "$regex": input_from_search, "$options" : "i"} }
         #myquery = { "conference": { "$regex": ^We } }
 
         nba_teams_collection = get_mongo_db()["nba_teams"]
-
         mydoc = nba_teams_collection.find(myquery)
+        return_list_of_dicts = []
         for x in mydoc:
-            print(x)
-            print("--------------------------")
-
-        with open(f"{request.form.get('name')}.txt", "w") as f:
-            f.write('FILE CREATED AND SUCCESSFULL POST REQUEST!')
-        return ('', 204)
+            return_list_of_dicts.append(x)
+ 
+        return json.loads(json_util.dumps(return_list_of_dicts))
 
 if __name__ == '__main__':
     app.run(
