@@ -1,7 +1,9 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, Response
 from pymongo import MongoClient
 import json
+import os
 from bson import json_util
+from pathlib import Path
 
 app = Flask(__name__)
 
@@ -35,6 +37,25 @@ def create_file():
             return_list_of_dicts.append(x)
  
         return json.loads(json_util.dumps(return_list_of_dicts))
+
+@app.route('/full_csv_download', methods=['GET'])
+def full_csv_download():
+    parent_path = Path(os.getcwd()).parent.absolute()
+    csv_path = parent_path / "db-dumps" / "nba_teams.csv"
+    print(csv_path)
+    print(type(csv_path))
+    f = open(csv_path, "r")
+    lines = f.read()
+    return lines
+
+@app.route('/full_json_download', methods=['GET'])
+def full_json_download():
+    parent_path = Path(os.getcwd()).parent.absolute()
+    json_path = parent_path / "db-dumps" / "nba_teams.json"
+    print(json_path)
+    print(type(json_path))
+    f = open(json_path, "r")
+    return json.loads(json_util.dumps(f.read()))
 
 if __name__ == '__main__':
     app.run(
