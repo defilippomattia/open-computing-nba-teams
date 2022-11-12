@@ -4,6 +4,7 @@ import json
 import os
 from bson import json_util
 from pathlib import Path
+import re
 
 app = Flask(__name__)
 
@@ -26,9 +27,8 @@ def create_file():
 		search_field_dropdown = request.form.get('search_field_dropdown')
 		input_from_search = request.form.get('input_from_search')
 
-		input_from_search = f"^{input_from_search}"
-		myquery = { search_field_dropdown: { "$regex": input_from_search, "$options" : "i"} }
-		#myquery = { "conference": { "$regex": ^We } }
+		rgx_str = f".*{input_from_search}.*"
+		myquery = {search_field_dropdown: {'$in':[re.compile(rgx_str,flags=re.IGNORECASE)]}}
 
 		nba_teams_collection = get_mongo_db()["nba_teams"]
 		mydoc = nba_teams_collection.find(myquery)
