@@ -116,15 +116,17 @@
                     success: function (data) {
                         console.log("SUCCESS : ", data);
                       $.each(data, function (i, o){
-                        trHTML += '<tr><td>' + o.arena +
+                        trHTML += '<tr><td>' + o.players_name +
+                                  '</td><td>' + o.players_position +
+                                  '</td><td>' + o.players_number +
+                                  '</td><td>' + o.team +
+                                  '</td><td>' + o.arena +
                                   '</td><td>' + o.arena_capacity +
                                   '</td><td>' + o.championships +
                                   '</td><td>' + o.conference +
                                   '</td><td>' + o.division +
                                   '</td><td>' + o.finals_appearances +
                                   '</td><td>' + o.location +
-                                  '</td><td>' + JSON.stringify(o.players) +
-                                  '</td><td>' + o.team +
                                   '</td><td>' + o.year_founded +
                                   '</td></tr>';
                       });

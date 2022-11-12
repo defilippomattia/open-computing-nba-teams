@@ -89,7 +89,7 @@ db.nba_teams.insertMany([
     },
     {
         "team":"Boston Celtics",
-        "location":"Los Angeles",
+        "location":"Boston",
         "conference": "Eastern",
         "division":"Atlantic",
         "year_founded":1946,

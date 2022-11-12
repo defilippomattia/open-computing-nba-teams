@@ -33,24 +33,25 @@ def create_file():
 		nba_teams_collection = get_mongo_db()["nba_teams"]
 		mydoc = nba_teams_collection.find(myquery)
 		return_list_of_dicts = []
-		dic_struct = {
-			"arena":None,
-			"arena_capacity":None,
-			"championships":None,
-			"conference":None,
-			"division":None,
-			"finals_appearances":None,
-			"location":None,
-			"team":None,
-			"year_founded":None,
-			"players_number":None,
-			"players_name":None,
-			"players_position":None
-		}
+
 		for x in mydoc:
-			print(type(x))
-			return_list_of_dicts.append(x)
- 
+			for p in x["players"]:
+				dict_struct = {}
+				dict_struct["arena"] = x["arena"]
+				dict_struct["arena_capacity"] = x["arena_capacity"]
+				dict_struct["championships"] = x["championships"]
+				dict_struct["team"] = x["team"]
+				dict_struct["location"] = x["location"]
+				dict_struct["conference"] = x["conference"]
+				dict_struct["division"] = x["division"]
+				dict_struct["year_founded"] = x["year_founded"]
+				dict_struct["finals_appearances"] = x["finals_appearances"]
+
+				dict_struct["players_number"] = p["number"]
+				dict_struct["players_name"] = p["name"]
+				dict_struct["players_position"] = p["position"]
+				return_list_of_dicts.append(dict_struct)
+
 		return json.loads(json_util.dumps(return_list_of_dicts))
 
 @app.route('/full_csv_download', methods=['GET'])
