@@ -29,7 +29,6 @@ def create_file():
 
 		if search_field_dropdown=="all":
 			rgx_str = f".*{input_from_search}.*"
-			myquery = {search_field_dropdown: {'$in':[re.compile(rgx_str,flags=re.IGNORECASE)]}}
 			myquery = {
 				'$or':[
 					{"team": {'$in':[re.compile(rgx_str,flags=re.IGNORECASE)]}},
@@ -92,15 +91,28 @@ def filtered_json_download():
 		search_field_dropdown = request.form.get('search_field_dropdown')
 		input_from_search = request.form.get('input_from_search')
 
-		input_from_search = f"^{input_from_search}"
-		myquery = { search_field_dropdown: { "$regex": input_from_search, "$options" : "i"} }
-		#myquery = { "conference": { "$regex": ^We } }
+		if search_field_dropdown=="all":
+			rgx_str = f".*{input_from_search}.*"
+			myquery = {
+				'$or':[
+					{"team": {'$in':[re.compile(rgx_str,flags=re.IGNORECASE)]}},
+					{"arena": {'$in':[re.compile(rgx_str,flags=re.IGNORECASE)]}},
+					{"location": {'$in':[re.compile(rgx_str,flags=re.IGNORECASE)]}},
+					{"conference": {'$in':[re.compile(rgx_str,flags=re.IGNORECASE)]}},
+					{"division": {'$in':[re.compile(rgx_str,flags=re.IGNORECASE)]}},
+				]
+			}
+		else:
+			rgx_str = f".*{input_from_search}.*"
+			myquery = {search_field_dropdown: {'$in':[re.compile(rgx_str,flags=re.IGNORECASE)]}}
+
 
 		nba_teams_collection = get_mongo_db()["nba_teams"]
 		mydoc = nba_teams_collection.find(myquery)
 		return_list_of_dicts = []
 		for x in mydoc:
 			return_list_of_dicts.append(x)
+		
  
 		return json.loads(json_util.dumps(return_list_of_dicts))
 
@@ -110,9 +122,21 @@ def filtered_csv_download():
 		search_field_dropdown = request.form.get('search_field_dropdown')
 		input_from_search = request.form.get('input_from_search')
 
-		input_from_search = f"^{input_from_search}"
-		myquery = { search_field_dropdown: { "$regex": input_from_search, "$options" : "i"} }
-		#myquery = { "conference": { "$regex": ^We } }
+		if search_field_dropdown=="all":
+			rgx_str = f".*{input_from_search}.*"
+			myquery = {
+				'$or':[
+					{"team": {'$in':[re.compile(rgx_str,flags=re.IGNORECASE)]}},
+					{"arena": {'$in':[re.compile(rgx_str,flags=re.IGNORECASE)]}},
+					{"location": {'$in':[re.compile(rgx_str,flags=re.IGNORECASE)]}},
+					{"conference": {'$in':[re.compile(rgx_str,flags=re.IGNORECASE)]}},
+					{"division": {'$in':[re.compile(rgx_str,flags=re.IGNORECASE)]}},
+				]
+			}
+		else:
+			rgx_str = f".*{input_from_search}.*"
+			myquery = {search_field_dropdown: {'$in':[re.compile(rgx_str,flags=re.IGNORECASE)]}}
+
 
 		nba_teams_collection = get_mongo_db()["nba_teams"]
 		mydoc = nba_teams_collection.find(myquery)
@@ -162,8 +186,6 @@ def convert_to_csv(received_dict):
 
 	csv_string=""
 	for i in full_csv:
-		print(i)
-		print("..............................")
 		for x in i:
 			take_out.append(x)
 	
