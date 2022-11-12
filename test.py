@@ -17,8 +17,7 @@ def get_mongo_db():
 nba_teams_collection = get_mongo_db()["nba_teams"]
 #myquery = {team: {$regex : /avs/i}}
 #regx = bson.regex.Regex('^Tor')
-regx = bson.regex.Regex('^/Tor/')
-myquery = {'team': {'$in': [ re.compile('.*clip.*',flags=re.IGNORECASE)]}}
+myquery = {'players.name': {'$in': [ re.compile('.*geo*',flags=re.IGNORECASE)]}}
 mydoc = nba_teams_collection.find(myquery)
 for x in mydoc:
     print("........")

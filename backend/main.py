@@ -27,8 +27,21 @@ def create_file():
 		search_field_dropdown = request.form.get('search_field_dropdown')
 		input_from_search = request.form.get('input_from_search')
 
-		rgx_str = f".*{input_from_search}.*"
-		myquery = {search_field_dropdown: {'$in':[re.compile(rgx_str,flags=re.IGNORECASE)]}}
+		if search_field_dropdown=="all":
+			rgx_str = f".*{input_from_search}.*"
+			myquery = {search_field_dropdown: {'$in':[re.compile(rgx_str,flags=re.IGNORECASE)]}}
+			myquery = {
+				'$or':[
+					{"team": {'$in':[re.compile(rgx_str,flags=re.IGNORECASE)]}},
+					{"arena": {'$in':[re.compile(rgx_str,flags=re.IGNORECASE)]}},
+					{"location": {'$in':[re.compile(rgx_str,flags=re.IGNORECASE)]}},
+					{"conference": {'$in':[re.compile(rgx_str,flags=re.IGNORECASE)]}},
+					{"division": {'$in':[re.compile(rgx_str,flags=re.IGNORECASE)]}},
+				]
+			}
+		else:
+			rgx_str = f".*{input_from_search}.*"
+			myquery = {search_field_dropdown: {'$in':[re.compile(rgx_str,flags=re.IGNORECASE)]}}
 
 		nba_teams_collection = get_mongo_db()["nba_teams"]
 		mydoc = nba_teams_collection.find(myquery)
