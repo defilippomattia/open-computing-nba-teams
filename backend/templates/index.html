@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html>
-    <title>jQuery Ajax Form Submit with FormData Example - NiceSnippets.com</title>
+    <title>NBA Teams dataset</title>
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script> 
     <head>
       <title>NBA Teams Dataset</title>
@@ -42,8 +42,6 @@
         </table>
     <br>
     <br>
-    <!-- <input type="submit" value="Show Full CSV dataset" id="csvDownload"/>
-    <input type="submit" value="Show Full JSON dataset" id="jsonDownload"/> -->
     <a href="/getFullCSV">Download Full CSV.</a><br>
     <a href="/getFullJSON">Download Full JSON.</a>
 
@@ -52,9 +50,6 @@
 
     <p class="csvclass" id="csvid"></p>
     <p class="jsonclass" id="jsonid"></p>
-
-
-
 
     <form method="POST" enctype="multipart/form-data" id="my-form">
         <label for="search_field_dropdown">Choose search field:</label>
@@ -68,20 +63,14 @@
         </select>
         <br><br>
         <input type="text" id="input_from_search" name="input_from_search"/><br/><br/>
-        <input type="submit" value="Submit" id="btnSubmit"/>
+        <input type="submit" value="Show Datatable" id="btnSubmit"/>
 
     </form>
     <img src="https://raw.githubusercontent.com/defilippomattia/open-computing-nba-teams/main/columns.jpg">
 
 <br>
 <br>
-<form action="{{ url_for("filtered_csv_download")}}" method="post">
-  <label for="firstname">First Name:</label>
-  <input type="text" id="firstname" name="fname" placeholder="firstname">
-  <label for="lastname">Last Name:</label>
-  <input type="text" id="lastname" name="lname" placeholder="lastname">
-  <button type="submit">Login</button>
-</form>
+
 <style>
   img {
   width: 100%;
@@ -123,26 +112,6 @@
     }
     </style>
     
-
-     <!-- <div class="dataTable_wrapper">
-      <table class='table table-striped table-bordered table-hover GeneratedTable' id='records_table'>
-        <tr class ='odd gradeX'>
-          <th>Team Name</th>
-          <th>Location</th>
-          <th>Confernce</th>
-          <th>Division</th>
-          <th>Year Founded</th>
-          <th>Arena</th>
-          <th>Arena Capacity</th>
-          <th>Championships</th>
-          <th>Final Appearences</th>
-          <th>Player Number</th>
-          <th>Player Name</th>
-          <th>Player Position</th>
-        </tr>
-      </table>
-    </div>   -->
-
     <div class="dataTable_wrapper">
       <table class='table table-striped table-bordered table-hover GeneratedTable' id='records_table'>
         <tr class ='odd gradeX'>
@@ -151,14 +120,33 @@
       </table>
     </div>   
 
+    <form action="{{ url_for("filtered")}}" method="POST" enctype="multipart/form-data" id="my-form">
 
-    <p class="filteredcsvclass" id="filteredcsvid"></p>
-    <p class="filteredjsonclass" id="filteredjsonid"></p>
-    <!-- <input type="submit" value="Show Filtered CSV" id="filteredCsvDownload"/> -->
-    <input type="submit" value="Show Filtered CSV" id="filteredCsvDownload"/>
-    <input type="submit" value="Show Filtered JSON" id="filteredJsonDownload"/>
 
-    <!-- <a href="/getFullCSV">Download Full CSV.</a><br> -->
+      <label for="format_dropdown">Choose dataset format:</label>
+      <select name="format_dropdown" id="format_dropdown">
+        <option value="csv">CSV</option>
+        <option value="json">JSON</option>
+      </select>
+      <br>
+      <br>
+      <label for="search_field_dropdown">Choose search field:</label>
+      <select name="search_field_dropdown" id="search_field_dropdown">
+        <option value="all">All</option>
+        <option value="team">Team Name</option>
+        <option value="location">Team Location</option>
+        <option value="conference">Conference</option>
+        <option value="division">Division</option>
+        <option value="arena">Arena Name</option>
+      </select>
+    
+    
+      <br><br>
+      <input type="text" id="input_from_search" name="input_from_search"/><br/><br/>
+      <button type="submit">Download Filtered Dataset</button>    
+    </form>
+
+
 
     <script type="text/javascript">
     	$(document).ready(function () {
@@ -196,7 +184,6 @@
                                   '</td><td>' + o.year_founded +
                                   '</td></tr>';
                       });
-                      //$('#tbody#emp').append(trHTML);
                       $('#records_table').html(trHTML);
                       $("#btnSubmit").prop("disabled", false);
                     },
@@ -208,54 +195,6 @@
                 });
             });
             
-            $("#filteredJsonDownload").click(function (event){
-              event.preventDefault();
-              var form = $('#my-form')[0];
-              var data = new FormData(form);
-              console.log(data)
-              var trHTML = '';
-              $("#filteredJsonDownload").prop("disabled", true);
-              $.ajax({
-                type: "POST",
-                enctype: 'multipart/form-data',
-                url: "{{ url_for('filtered_json_download') }}",
-                data: data,
-                processData: false,
-                contentType: false,
-                cache: false,
-                timeout: 800000,
-                success: function (data) {
-                  console.log(data)
-                  $("#filteredJsonDownload").prop("disabled", false);
-                  $("#filteredjsonid").text(JSON.stringify(data,null,4));
-                }
-
-              })
-            })
-            $("#filteredCsvDownload").click(function (event){
-              event.preventDefault();
-              var form = $('#my-form')[0];
-              var data = new FormData(form);
-              console.log(data)
-              var trHTML = '';
-              $("#filteredCsvDownload").prop("disabled", true);
-              $.ajax({
-                type: "POST",
-                enctype: 'multipart/form-data',
-                url: "{{ url_for('filtered_csv_download') }}",
-                data: data,
-                processData: false,
-                contentType: false,
-                cache: false,
-                timeout: 800000,
-                success: function (data) {
-                  console.log(data)
-                  $("#filteredCsvDownload").prop("disabled", false);
-                  $("#filteredcsvid").text(data);
-                }
-
-              })
-            })
           });
         
     </script>
