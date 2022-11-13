@@ -9,3 +9,11 @@ python3 -m venv venv-nba
 source venv-nba/bin/activate
 cd backend
 python3 main.py
+
+LAB 2 prezentacija
+Start VSCode
+Start Docker
+cd ~/everything/git-repos/open-computing-nba-teams
+docker-compose --file ./Docker/docker-compose.yml up -d
+cd backend/
+python3 main.py

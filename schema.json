@@ -1,7 +1,46 @@
 {
     "$schema": "https://json-schema.org/draft/2020-12/schema",
     "$id": "https://example.com/product.schema.json",
-    "title": "NBAteams",
+    "title": "NBA Team",
     "description": "Schema for NBA Teams dataset",
-    "type": "object"
+    "type": "object",
+    "properties": {
+        "team": {"type": "string","description":"Name of the team"},
+        "location": {"type": "string","description":"City name where the team is located"},
+        "conference": {"type": "string","description":"Conference in which the team is competing"},
+        "division": {"type": "string","description":"Division in which the team is competing"},
+        "year_founded": {"type": "number","description":"Year (YYYY) in which the team is founded"},
+        "arena": {"type": "string","description":"Arena where team is hosting home games"},
+        "arena_capacity": {"type": "number","description":"Number of seats in arena"},
+        "championships": {"type": "number","description":"Number of championships the team has won"},
+        "finals_appearances": {"type": "number","description":"Number of times the team appeared in finals"},
+        "players":{
+            "type":"array",
+            "items":{
+                    "type": "object",
+                    "properties":{
+                        "number":{"type":"string","description":"Players jersey number"},
+                        "name":{"type":"string","description":"Players name"},
+                        "position":{"type":"string","description":"Position which player is playing"}
+                    },
+                    "required": [
+                      "number",
+                      "name",
+                      "position"
+                    ]
+                }
+        }
+    },
+    "required": [
+        "team",
+        "location",
+        "conference",
+        "division",
+        "year_founded",
+        "arena",
+        "arena_capacity",
+        "championships",
+        "finals_appearances",
+        "players"
+    ]
 }
