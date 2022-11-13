@@ -42,8 +42,11 @@
         </table>
     <br>
     <br>
-    <input type="submit" value="Show Full CSV dataset" id="csvDownload"/>
-    <input type="submit" value="Show Full JSON dataset" id="jsonDownload"/>
+    <!-- <input type="submit" value="Show Full CSV dataset" id="csvDownload"/>
+    <input type="submit" value="Show Full JSON dataset" id="jsonDownload"/> -->
+    <a href="/getFullCSV">Download Full CSV.</a><br>
+    <a href="/getFullJSON">Download Full JSON.</a>
+
     <br>
     <br>
 
@@ -72,6 +75,13 @@
 
 <br>
 <br>
+<form action="{{ url_for("filtered_csv_download")}}" method="post">
+  <label for="firstname">First Name:</label>
+  <input type="text" id="firstname" name="fname" placeholder="firstname">
+  <label for="lastname">Last Name:</label>
+  <input type="text" id="lastname" name="lname" placeholder="lastname">
+  <button type="submit">Login</button>
+</form>
 <style>
   img {
   width: 100%;
@@ -144,9 +154,11 @@
 
     <p class="filteredcsvclass" id="filteredcsvid"></p>
     <p class="filteredjsonclass" id="filteredjsonid"></p>
+    <!-- <input type="submit" value="Show Filtered CSV" id="filteredCsvDownload"/> -->
     <input type="submit" value="Show Filtered CSV" id="filteredCsvDownload"/>
     <input type="submit" value="Show Filtered JSON" id="filteredJsonDownload"/>
 
+    <!-- <a href="/getFullCSV">Download Full CSV.</a><br> -->
 
     <script type="text/javascript">
     	$(document).ready(function () {
@@ -195,48 +207,8 @@
                     }
                 });
             });
-            $("#csvDownload").click(function (event) {
-              console.log("Download CSV")
-              var smt;
-              $.ajax({
-                type: "GET",
-                    enctype: 'multipart/form-data',
-                    url: "{{ url_for('full_csv_download') }}",
-                    processData: false,
-                    contentType: false,
-                    cache: false,
-                    timeout: 800000,
-                    success: function (smt) {
-                      console.log(smt)
-                      $("#csvid").text(smt);
-
-                    }
-              })
-            }) 
-            $("#jsonDownload").click(function (event) {
-              console.log("Download JSON")
-              var smt
-              $.ajax({
-                type: "GET",
-                    enctype: 'multipart/form-data',
-                    url: "{{ url_for('full_json_download') }}",
-                    processData: false,
-                    contentType: false,
-                    cache: false,
-                    timeout: 800000,
-                    success: function (smt) {
-                      console.log(smt)
-                      $("#csvid").text(smt);
-                    }
-              })
-              // link = document.createElement('a')
-              // link.setAttribute('href',encodeURI(smt))
-              // link.setAttribute('download','full.json')
-              // link.click()
-            }) 
             
             $("#filteredJsonDownload").click(function (event){
-              console.log("ludlo")
               event.preventDefault();
               var form = $('#my-form')[0];
               var data = new FormData(form);
@@ -261,7 +233,6 @@
               })
             })
             $("#filteredCsvDownload").click(function (event){
-              console.log("ludlo")
               event.preventDefault();
               var form = $('#my-form')[0];
               var data = new FormData(form);
@@ -280,7 +251,6 @@
                 success: function (data) {
                   console.log(data)
                   $("#filteredCsvDownload").prop("disabled", false);
-                  //$("#filteredcsvid").text(JSON.stringify(data,null,4));
                   $("#filteredcsvid").text(data);
                 }
 

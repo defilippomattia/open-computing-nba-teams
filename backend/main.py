@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, Response
+from flask import Flask, render_template, request, Response, send_file
 from pymongo import MongoClient
 import json
 import os
@@ -66,24 +66,47 @@ def create_table():
 
 		return json.loads(json_util.dumps(return_list_of_dicts))
 
-@app.route('/full_csv_download', methods=['GET'])
-def full_csv_download():
+# @app.route('/full_csv_download', methods=['GET'])
+# def full_csv_download():
+# 	parent_path = Path(os.getcwd()).parent.absolute()
+# 	csv_path = parent_path / "db-dumps" / "nba_teams.csv"
+# 	print(csv_path)
+# 	print(type(csv_path))
+# 	f = open(csv_path, "r")
+# 	lines = f.read()
+# 	return lines
+
+
+@app.route("/getFullCSV")
+def getFullCSV():
 	parent_path = Path(os.getcwd()).parent.absolute()
 	csv_path = parent_path / "db-dumps" / "nba_teams.csv"
-	print(csv_path)
-	print(type(csv_path))
-	f = open(csv_path, "r")
-	lines = f.read()
-	return lines
+	csv_f = open(csv_path,"r")
+	return Response(
+		csv_f,
+		mimetype="text/csv",
+		headers={"Content-disposition":
+				 "attachment; filename=fullcsv.csv"})
 
-@app.route('/full_json_download', methods=['GET'])
-def full_json_download():
+@app.route("/getFullJSON")
+def getFullJSON():
 	parent_path = Path(os.getcwd()).parent.absolute()
 	json_path = parent_path / "db-dumps" / "nba_teams.json"
-	print(json_path)
-	print(type(json_path))
-	f = open(json_path, "r")
-	return json.loads(json_util.dumps(f.read()))
+	json_f = open(json_path,"r")
+	return Response(
+		json_f,
+		mimetype="text/json",
+		headers={"Content-disposition":
+				 "attachment; filename=fulljson.json"})
+
+# @app.route('/full_json_download', methods=['GET'])
+# def full_json_download():
+# 	parent_path = Path(os.getcwd()).parent.absolute()
+# 	json_path = parent_path / "db-dumps" / "nba_teams.json"
+# 	print(json_path)
+# 	print(type(json_path))
+# 	f = open(json_path, "r")
+# 	return json.loads(json_util.dumps(f.read()))
 
 @app.route('/filtered_json_download', methods=['POST'])
 def filtered_json_download():
@@ -112,8 +135,7 @@ def filtered_json_download():
 		return_list_of_dicts = []
 		for x in mydoc:
 			return_list_of_dicts.append(x)
-		
- 
+
 		return json.loads(json_util.dumps(return_list_of_dicts))
 
 @app.route('/filtered_csv_download', methods=['POST'])
@@ -143,7 +165,12 @@ def filtered_csv_download():
 		return_list_of_dicts = []
 		for x in mydoc:
 			return_list_of_dicts.append(x)
-		
+		# csv ="1,2,3"
+		# return Response(
+		# csv,
+		# mimetype="text/csv",
+		# headers={"Content-disposition":
+		# 		 "attachment; filename=myplot.csv"})
 		return convert_to_csv(json.loads(json_util.dumps(return_list_of_dicts)))
 
 
