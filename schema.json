@@ -1,6 +1,6 @@
 {
     "$schema": "https://json-schema.org/draft/2020-12/schema",
-    "$id": "https://example.com/product.schema.json",
+    "$id": "https://github.com/defilippomattia/open-computing-nba-teams/blob/main/schema.json",
     "title": "NBA Team",
     "description": "Schema for NBA Teams dataset",
     "type": "object",
