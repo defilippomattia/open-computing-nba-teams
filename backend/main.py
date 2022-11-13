@@ -21,8 +21,8 @@ def get_mongo_db():
 def index():
 	return render_template('index.html')
 
-@app.route('/create_file', methods=['POST'])
-def create_file():
+@app.route('/create_table', methods=['POST'])
+def create_table():
 	if request.method == 'POST':
 		search_field_dropdown = request.form.get('search_field_dropdown')
 		input_from_search = request.form.get('input_from_search')

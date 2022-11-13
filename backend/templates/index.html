@@ -68,13 +68,13 @@
         <input type="submit" value="Submit" id="btnSubmit"/>
 
     </form>
-    <img src="https://raw.githubusercontent.com/defilippomattia/open-computing-nba-teams/4a16ba82370af391573e7888713581f8cea435a8/backend/templates/columns.jpg" alt="Girl in a jacket">
+    <img src="https://raw.githubusercontent.com/defilippomattia/open-computing-nba-teams/main/columns.jpg">
 
 <br>
 <br>
 <style>
   img {
-  width: 95%;
+  width: 100%;
   height: auto;
 }
   .tg  {border-collapse:collapse;border-spacing:0;}
@@ -136,18 +136,7 @@
     <div class="dataTable_wrapper">
       <table class='table table-striped table-bordered table-hover GeneratedTable' id='records_table'>
         <tr class ='odd gradeX'>
-          <th>Team Name</th>
-          <th>Location</th>
-          <th>Confernce</th>
-          <th>Division</th>
-          <th>Year Founded</th>
-          <th>Arena</th>
-          <th>Arena Capacity</th>
-          <th>Championships</th>
-          <th>Final Appearences</th>
-          <th>Player Number</th>
-          <th>Player Name</th>
-          <th>Player Position</th>
+
         </tr>
       </table>
     </div>   
@@ -172,7 +161,7 @@
                 $.ajax({
                     type: "POST",
                     enctype: 'multipart/form-data',
-                    url: "{{ url_for('create_file') }}",
+                    url: "{{ url_for('create_table') }}",
                     data: data,
                     processData: false,
                     contentType: false,
