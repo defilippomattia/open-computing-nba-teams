@@ -15,20 +15,29 @@ db = client["open-computing-nba-teams"]
 nba_teams_collection = db["nba_teams"]
 
 
-# def get_mongo_db():
-# 	CONNECTION_STRING= "mongodb://root:password@localhost:27017/open-computing-nba-teams?authSource=admin"
-# 	client = MongoClient(CONNECTION_STRING)
-# 	db = client["open-computing-nba-teams"]
-# 	return db
+@app.errorhandler(405)
+def not_allowed_error(error):
+	final_response = {}
+	final_response["status"] = "Error"
+	final_response["message"] = "Method not allowed"
+	final_response["response"] = None
+	return Response(json_util.dumps(final_response), mimetype='application/json',status=405)
+ 
 
 #638b864ab0dc209b60b9beee"
+
+#find location of openapi.json file
+#openapi_json_file = Path(__file__).parent / "openapi.json"
+@app.route('/openapi')
+def openapi():
+	filel=  Path(__file__).parent / "openapi.json"
+	return send_file("openapi.json",mimetype='application/json',status=200)
+
 
 @app.route('/locations', methods=['GET'])
 def get_locations():
 	locations = nba_teams_collection.distinct("location")
 	final_response = {}
-	for l in locations:
-		print(l)
 	final_response["status"] = "OK"
 	final_response["message"] = "Fecthed all locations"
 	final_response["response"] = locations
@@ -53,7 +62,7 @@ def get_arenas():
 	return Response(json_util.dumps(final_response), mimetype='application/json',status=200)
 
 @app.route('/nba-teams',methods=['GET','POST'])
-@app.route('/nba-teams/<string:id>',methods=['GET','DELETE'])
+@app.route('/nba-teams/<string:id>',methods=['GET','DELETE','PUT'])
 def index(id=None):
 	print(request.args)
 	#check if methos is GET
@@ -99,7 +108,6 @@ def index(id=None):
 				return Response(json_util.dumps(final_response), mimetype='application/json',status=200)
 
 			except Exception as e:
-				print(e)
 				final_response = {}
 				final_response["status"] = "Not Found"
 				final_response["message"] = "Didn't delete because NBA team with id: "+id+" not found"
@@ -128,61 +136,33 @@ def index(id=None):
 			final_response["message"] = "POST method not allowed on specific NBA team"
 			final_response["response"] = None
 			return Response(json_util.dumps(final_response), mimetype='application/json',status=405)
-
-
-'''
-@app.route('/')
-def index():
-	return render_template('index.html')
-
-@app.route('/create_table', methods=['POST'])
-def create_table():
-	if request.method == 'POST':
-		search_field_dropdown = request.form.get('search_field_dropdown')
-		input_from_search = request.form.get('input_from_search')
-
-		if search_field_dropdown=="all":
-			rgx_str = f".*{input_from_search}.*"
-			myquery = {
-				'$or':[
-					{"team": {'$in':[re.compile(rgx_str,flags=re.IGNORECASE)]}},
-					{"arena": {'$in':[re.compile(rgx_str,flags=re.IGNORECASE)]}},
-					{"location": {'$in':[re.compile(rgx_str,flags=re.IGNORECASE)]}},
-					{"conference": {'$in':[re.compile(rgx_str,flags=re.IGNORECASE)]}},
-					{"division": {'$in':[re.compile(rgx_str,flags=re.IGNORECASE)]}},
-				]
-			}
+	
+	#handle PUT
+	elif request.method == 'PUT':
+		if(id is None):
+			final_response = {}
+			final_response["status"] = "Error"
+			final_response["message"] = "PUT method not allowed on whole dataset"
+			final_response["response"] = None
+			return Response(json_util.dumps(final_response), mimetype='application/json',status=405)
 		else:
-			rgx_str = f".*{input_from_search}.*"
-			myquery = {search_field_dropdown: {'$in':[re.compile(rgx_str,flags=re.IGNORECASE)]}}
-
-		nba_teams_collection = get_mongo_db()["nba_teams"]
-		mydoc = nba_teams_collection.find(myquery)
-		return_list_of_dicts = []
-
-		for x in mydoc:
-			for p in x["players"]:
-				dict_struct = {}
-				dict_struct["arena"] = x["arena"]
-				dict_struct["arena_capacity"] = x["arena_capacity"]
-				dict_struct["championships"] = x["championships"]
-				dict_struct["team"] = x["team"]
-				dict_struct["location"] = x["location"]
-				dict_struct["conference"] = x["conference"]
-				dict_struct["division"] = x["division"]
-				dict_struct["year_founded"] = x["year_founded"]
-				dict_struct["finals_appearances"] = x["finals_appearances"]
-
-				dict_struct["players_number"] = p["number"]
-				dict_struct["players_name"] = p["name"]
-				dict_struct["players_position"] = p["position"]
-				return_list_of_dicts.append(dict_struct)
-
-		return json.loads(json_util.dumps(return_list_of_dicts))
+			try:
+				nba_teams_collection.update_one({"_id": ObjectId(id)}, {"$set": request.get_json()})
+				final_response = {}
+				final_response["status"] = "OK"
+				final_response["message"] = "Updated NBA team with id: "+id
+				final_response["response"] = None
+				return Response(json_util.dumps(final_response), mimetype='application/json',status=200)
+			except Exception as e:
+				print(e)
+				final_response = {}
+				final_response["status"] = "Not Found"
+				final_response["message"] = "Didn't update because NBA team with id: "+id+" not found or not valid PUT body"
+				final_response["response"] = None
+				return Response(json_util.dumps(final_response), mimetype='application/json',status=404)
+	
 
 
-
-'''
 
 
 if __name__ == '__main__':
