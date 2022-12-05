@@ -12,10 +12,146 @@
         }
     },
     "paths":{
-        "/nba-teams":{},
-        "/nba-teams/{id}":{},
-        "/locations":{},
-        "/players":{},
+        "/nba-teams":{
+            "get":{
+                "summary":"Get whole dataset",
+                "description":"Returns whole dataset as a list of teams objects",
+                "responses":{
+                    "200":{
+                        "description":"Fetch successful"
+                    }
+                }
+            },
+            "post":{                
+                "summary":"Add new team",
+                "description":"Adds new team to the dataset",
+                "requestBody":{
+                    "content":{
+                        "application/json":{
+                            "schema":{
+                                "$ref":"https://github.com/defilippomattia/open-computing-nba-teams/blob/main/schema.json"
+                            },
+                            "example": {
+                                "team":"My New Team",
+                                "location":"My Location",
+                                "conference":"My Conference",
+                                "division":"My Dicision",
+                                "year_founded":"2022",
+                                "arena":"My Arena",
+                                "arena_capacity":"55555",
+                                "championships":"3",
+                                "finals_appearances":"5",
+                                "players":[
+                                    {
+                                        "number":"14",
+                                        "name":"John Doe",
+                                        "position":"Center"
+                                    },
+                                    {
+                                        "number":"44",
+                                        "name":"Mark Doyle",
+                                        "position":"Guard"
+                                    }
+                                ]
+                            }
+                        }
+                    }
+                },
+                "responses":{
+                    "200":{
+                        "description":"Team added successfully"
+                    },
+                    "400":{
+                        "description":"Team was not added - invalid team object"
+                    }
+
+                }
+            }
+        },
+        "/nba-teams/{id}":{
+            "get":{
+                "summary":"Get team by id",
+                "description":"Returns team object with given id",
+                "parameters":[
+                    {
+                        "name":"id",
+                        "in":"path",
+                        "description":"Team id",
+                        "required":true
+                    }
+                ],
+                "responses":{
+                    "200":{
+                        "description":"Fetch successful"
+                    },
+                    "404":{
+                        "description":"Team with given id not found"
+                    }
+                }
+            },
+            "put":{
+                "summary":"Update team by id",
+                "description":"Updates team object with given id",
+                "parameters":[
+                    {
+                        "name":"id",
+                        "in":"path",
+                        "description":"Team id",
+                        "required":true
+                    }
+                ],
+                "responses":{
+                    "200":{
+                        "description":"Update successful"
+                    },
+                    "404":{
+                        "description":"Team with given id not found"
+                    }
+                }
+            },
+            "delete":{
+                "summary":"Delete team by id",
+                "description":"Deletes team object with given id",
+                "parameters":[
+                    {
+                        "name":"id",
+                        "in":"path",
+                        "description":"Team id",
+                        "required":true
+                    }
+                ],
+                "responses":{
+                    "200":{
+                        "description":"Delete successful"
+                    },
+                    "404":{
+                        "description":"Team with given id not found"
+                    }
+                }
+            }
+        },
+        "/locations":{
+            "get":{
+                "summary":"Get all locations",
+                "description":"Returns all locations as a list of strings",
+                "responses":{
+                    "200":{
+                        "description":"Fetch successful"
+                    }
+                }
+            }
+        },
+        "/players":{
+            "get":{
+                "summary":"get all players",
+                "description":"Returns all players as a list of strings",
+                "responses":{
+                    "200":{
+                        "description":"Fetch successful"
+                    }
+                }
+            }
+        },
         "/arenas":{
             "get":{
                 "summary":"Get all arenas",
@@ -26,6 +162,18 @@
                     }
                 }
             }
+        },
+        "/openapi":{
+            "get":{
+                "summary":"Get openapi specification",
+                "description":"Returns openapi specification in JSON format", 
+                "responses":{
+                    "200":{
+                        "description":"Fetch successfull"
+                    }
+                }
+            }
         }
     }
+
 }
