@@ -20,3 +20,68 @@ cd backend/
 python3 main.py
 
 https://www.jsonschemavalidator.net/
+
+LAB 3 prezentacija
+
+Start Docker
+Start postman
+
+cd open-computing-nba-teams/
+
+source venv-nba/bin/activate
+
+docker rm -f $(docker ps -a -q)
+docker-compose --file ./Docker/docker-compose.yml up -d
+
+cd backend/
+python3 main.py
+
+GET http://localhost:5001/nba-teams
+
+GET http://localhost:5001/nba-teams/<id>
+
+GET http://localhost:5001/locations
+
+GET http://localhost:5001/players
+
+GET http://localhost:5001/arenas
+
+POST http://localhost:5001/nba-teams
+{
+    "team":"My New Team",
+    "location":"My Location",
+    "conference":"My Conference",
+    "division":"My Dicision",
+    "year_founded":"2022",
+    "arena":"My Arena",
+    "arena_capacity":"55555",
+    "championships":"3",
+    "finals_appearances":"5",
+    "players":[
+        {
+            "number":"14",
+            "name":"John Doe",
+            "position":"Center"
+        },
+        {
+            "number":"44",
+            "name":"Mark Doyle",
+            "position":"Guard"
+        }
+    ]
+}
+
+GET http://localhost:5001/nba-teams
+
+PUT http://localhost:5001/nba-teams/<id of added team>
+{
+    "team":"TEST123"
+}
+
+GET http://localhost:5001/nba-teams/<id of added team>
+
+DELETE http://localhost:5001/nba-teams/<id of added team>
+
+GET http://localhost:5001/nba-teams
+
+GET http://localhost:5001/openapi
