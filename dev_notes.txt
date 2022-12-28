@@ -85,3 +85,16 @@ DELETE http://localhost:5001/nba-teams/<id of added team>
 GET http://localhost:5001/nba-teams
 
 GET http://localhost:5001/openapi
+
+
+
+LAB 4 prezentacija
+Start VSCode
+Start Docker
+cd ~/everything/git-repos/open-computing-nba-teams
+docker rm -f $(docker ps -a -q)
+docker-compose --file ./Docker/docker-compose.yml up -d
+cd backend/
+python3 main_copy.py
+https://github.com/settings/applications/2073962 and revoke all user tokens
+http://localhost:5001

@@ -2,13 +2,57 @@ from flask import Flask, render_template, request, Response, send_file
 from pymongo import MongoClient
 import json
 import os
+os.environ['OAUTHLIB_INSECURE_TRANSPORT'] = '1'
 from bson import json_util
 from pathlib import Path
 import re
+from flask import Flask,render_template,url_for,request,redirect, session
+from flask_dance.contrib.github import make_github_blueprint, github
+
 
 app = Flask(__name__)
 
 
+with open('secrets.json') as f:
+	data = json.load(f)
+
+app.config["SECRET_KEY"]=data["APP_SECRET_KEY"]
+github_blueprint = make_github_blueprint(client_id=data["GITHUB_CLIENT_ID"], client_secret=data["GITHUB_CLIENT_SECRET"])
+app.register_blueprint(github_blueprint, url_prefix='/github_login')
+
+
+@app.route('/')
+def github_login():
+	if not github.authorized:
+		return redirect(url_for('github.login'))
+	else:
+		account_info = github.get('/user')
+		if account_info.ok:
+			return render_template('index.html')
+
+	return '<h1>Request failed!</h1>'
+
+@app.route('/logout')
+def logout():
+	session.clear()
+	return redirect(url_for("github_login"))
+
+
+
+@app.route('/profile')
+def profile():
+	if not github.authorized:
+		return redirect(url_for('github.login'))
+	else:
+		account_info = github.get('/user')
+		print(account_info.json())
+		if account_info.ok:
+			account_info_json = account_info.json()
+			return render_template('profile.html', 
+				username = account_info_json['login'], 
+				avatar_url = account_info_json['avatar_url'],
+				name = account_info_json['name'],
+				location = account_info_json['location'])
 
 def get_mongo_db():
 	CONNECTION_STRING= "mongodb://root:password@localhost:27017/open-computing-nba-teams?authSource=admin"
@@ -16,10 +60,6 @@ def get_mongo_db():
 	db = client["open-computing-nba-teams"]
 	return db
 
-
-@app.route('/')
-def index():
-	return render_template('index.html')
 
 @app.route('/create_table', methods=['POST'])
 def create_table():
@@ -98,6 +138,7 @@ def getFullJSON():
 		mimetype="text/json",
 		headers={"Content-disposition":
 				 "attachment; filename=fulljson.json"})
+
 
 
 
