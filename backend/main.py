@@ -45,10 +45,16 @@ def openapi():
 @app.route('/locations',strict_slashes=False, methods=['GET'])
 def get_locations():
 	locations = nba_teams_collection.distinct("location")
+	locations_dict_list = []
+	for location in locations:
+		location_dict = {"name": location}
+		locations_dict_list.append(location_dict)
 	final_response = {}
 	final_response["status"] = "OK"
 	final_response["message"] = "Fecthed all locations"
-	final_response["response"] = locations
+	final_response["locations"] = locations_dict_list
+	final_response["@context"] ={}
+	final_response["@context"]["locations"] = "https://schema.org/Place"
 	return Response(json_util.dumps(final_response), mimetype='application/json',status=200)
 
 @app.route('/players',strict_slashes=False, methods=['GET'])
@@ -63,10 +69,17 @@ def get_players():
 @app.route('/arenas',strict_slashes=False, methods=['GET'])
 def get_arenas():
 	arenas = nba_teams_collection.distinct("arena")
+
+	arena_dict_list = []
+	for arena in arenas:
+		arena_dict = {"name": arena}
+		arena_dict_list.append(arena_dict)
 	final_response = {}
 	final_response["status"] = "OK"
 	final_response["message"] = "Fecthed all arenas"
-	final_response["response"] = arenas
+	final_response["arenas"] = arena_dict_list
+	final_response["@context"] ={}
+	final_response["@context"]["arenas"] = "https://schema.org/StadiumOrArena"
 	return Response(json_util.dumps(final_response), mimetype='application/json',status=200)
 
 @app.route('/nba-teams',strict_slashes=False, methods=['GET','POST'])
@@ -163,6 +176,6 @@ def index(id=None):
 if __name__ == '__main__':
 	app.run(
 		host='127.0.0.1',
-		port=5001,
+		port=5002,
 		debug=True
 	)
