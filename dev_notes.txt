@@ -95,6 +95,12 @@ cd ~/everything/git-repos/open-computing-nba-teams
 docker rm -f $(docker ps -a -q)
 docker-compose --file ./Docker/docker-compose.yml up -d
 cd backend/
-python3 main_copy.py
-https://github.com/settings/applications/2073962 and revoke all user tokens
-http://localhost:5001
+
+2 terminal tabs: 
+    python3 main_copy.py
+    https://github.com/settings/applications/2073962 and revoke all user tokens
+    http://localhost:5001
+
+    python3 main.py
+    POSTMAN: GET http://localhost:5002/locations
+    POSTMAN: GET http://localhost:5002/arenas
